@@ -21,3 +21,12 @@ body {
   text-align: center;
   color: #e6ddf9;
 }
+
+.post{
+  background-color: lightBlue;
+  color: #000;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+}
