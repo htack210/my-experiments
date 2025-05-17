@@ -1,14 +1,27 @@
+import { useState } from 'react';
 import PostsList from "./components/PostsList";
-import classes from "./App.module.css";
-
-const { centered } = classes
+import MainHeader from "./components/MainHeader";
 
 function App() {
+  const [modalIsVisible, setModalIsVisible] = useState(false)
+
+  function showModalHandler() {
+    setModalIsVisible(true);
+  }
+
+  function hideModalHandler() {
+    setModalIsVisible(false);
+  }
+
   return (
-    <main>
-      <h1 className={centered}>My First-ish React app</h1>
-      <PostsList />
-    </main>
+    <>
+      <MainHeader onCreatePost={showModalHandler} />
+      <main>
+        <PostsList
+          isPosting={modalIsVisible}
+          onStopPosting={hideModalHandler} />
+      </main>
+    </>
   );
 }
 

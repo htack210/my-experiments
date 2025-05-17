@@ -9,14 +9,9 @@ const DEFAULT_BODY = 'Enter text';
 const DEFAULT_AUTHOR = 'Enter author name';
 const { posts } = classes;
 
-function PostsList() {
-    const [modalIsVisible, setModalIsVisible] = useState(true)
+function PostsList({ isPosting, onStopPosting }) {
     const [enteredBody, setEnteredBody] = useState('Enter text')
     const [enteredAuthor, setEnteredAuthor] = useState('Enter author name')
-
-    function hideModalHandler() {
-        setModalIsVisible(false);
-    }
 
     function bodyChangeHandler(event) {
         const value = event.target.value
@@ -30,11 +25,12 @@ function PostsList() {
 
     return (
         <>
-            {modalIsVisible && (<Modal onClose={hideModalHandler}>
-                <NewPost onBodyChange={bodyChangeHandler}
-                    onAuthorChange={authorChangeHandler}
-                />
-            </Modal>)}
+            {isPosting && (
+                <Modal onClose={onStopPosting}>
+                    <NewPost onBodyChange={bodyChangeHandler}
+                        onAuthorChange={authorChangeHandler}
+                    />
+                </Modal>)}
 
             <ul className={posts}>
                 <Post name={enteredAuthor} body={enteredBody} />
