@@ -1,7 +1,9 @@
 import classes from './NewPost.module.css';
 
+const { form } = classes
+
 function NewPost({ onBodyChange, onAuthorChange }) {
-    return (<form className={classes.form}>
+    return (<form className={form}>
         <p> <label htmlFor="body" >Text</label>
             <textarea id="body" required rows={3} onChange={onBodyChange} />
         </p>
