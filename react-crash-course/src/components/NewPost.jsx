@@ -6,7 +6,7 @@ const { form, actions } = classes
 const DEFAULT_BODY = 'Enter text';
 const DEFAULT_AUTHOR = 'Enter author name';
 
-function NewPost({ onCancel }) {
+function NewPost({ onCancel, onAddPost}) {
     const [enteredBody, setEnteredBody] = useState('Enter text')
     const [enteredAuthor, setEnteredAuthor] = useState('Enter author name')
 
@@ -26,7 +26,7 @@ function NewPost({ onCancel }) {
             body: enteredBody,
             author: enteredAuthor
         };
-        console.log(postData);
+        onAddPost(postData);
         onCancel();
     }
     return (<form className={form} onSubmit={submitHandler}>
