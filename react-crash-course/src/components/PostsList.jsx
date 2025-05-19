@@ -19,7 +19,7 @@ function PostsList({ isPosting, onStopPosting }) {
             {isPosting && (
                 <Modal onClose={onStopPosting}>
                     <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
-                </Modal>)};
+                </Modal>)}
 
             <ul className={posts}>
                 {/* <Post name={enteredAuthor} body={enteredBody} /> */}
