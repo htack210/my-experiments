@@ -11,7 +11,7 @@ function PostsList({ isPosting, onStopPosting }) {
     const [posts, setPosts] = useState([]);
 
     function addPostHandler(postData) {
-        setPosts((existingPosts) => [postData, ...existingPosts]);;
+        setPosts((existingPosts) => [postData, ...existingPosts]);
     }
 
     return (
