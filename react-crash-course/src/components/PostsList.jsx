@@ -5,8 +5,6 @@ import NewPost from './NewPost'
 import Modal from './Modal';
 import classes from './PostsList.module.css';
 
-const { posts } = classes;
-
 function PostsList({ isPosting, onStopPosting }) {
     const [posts, setPosts] = useState([]);
 
@@ -20,11 +18,13 @@ function PostsList({ isPosting, onStopPosting }) {
                 <Modal onClose={onStopPosting}>
                     <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
                 </Modal>)}
-
-            <ul className={posts}>
-                {/* <Post name={enteredAuthor} body={enteredBody} /> */}
-                <Post name="Jim" body="Glenn's too old to learn this stuff." />
+            {posts.length === 0 && <div style={{textAlign:'center', color:'white'}}>
+                <h2 className={classes.noPosts}>No posts yet!</h2>
+                <p>Add some!</p></div>}
+            {posts.length > 0 && <ul className={classes.posts}>
+                {posts.map((post, idx) => <Post key={idx} name={post.author} body={post.body}  />)}
             </ul>
+        }
         </>
     );
 }
