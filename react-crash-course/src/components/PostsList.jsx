@@ -32,7 +32,7 @@ function PostsList({ isPosting, onStopPosting }) {
             body: JSON.stringify(postData),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
         });
         setPosts((existingPosts) => [postData, ...existingPosts]);
     }
