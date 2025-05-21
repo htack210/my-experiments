@@ -8,14 +8,21 @@ import classes from './PostsList.module.css';
 function PostsList({ isPosting, onStopPosting }) {
 
     const [posts, setPosts] = useState([]);
+    const [isFetching, setIsFethcing] = useState(false);
 
     useEffect(() => {
         async function fetchPosts() {
+            setIsFethcing(true); // While fetching data
             const response = await fetch('http://localhost:8080/posts')
             const resData = await response.json();
-            setPosts(resData.posts);
+            if (!response.ok) {
+                console.log(resData.message);
+                throw new Error(resData.message || 'Something went wrong!');
             }
-            
+            setPosts(resData.posts);
+            setIsFethcing(false); // After fetching data
+            }
+
         fetchPosts();
     }, []);
 
@@ -36,16 +43,21 @@ function PostsList({ isPosting, onStopPosting }) {
                 <Modal onClose={onStopPosting}>
                     <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
                 </Modal>)}
-            {posts.length === 0 && <div style={{textAlign:'center', color:'white'}}>
+            {!isFetching && posts.length === 0 && <div style={{textAlign:'center', color:'white'}}>
                 <h2 className={classes.noPosts}>No posts yet!</h2>
                 <p>Add some!</p></div>}
-            {posts.length > 0 && (
+            {!isFetching && posts.length > 0 && (
                 <ul className={classes.posts}>
                 {posts.map((post, idx) => (
                     <Post key={idx} name={post.author} body={post.body}  />
                 ))}
             </ul>
             )}
+            {isFetching && 
+                <div>
+                    <p style={{textAlign:'center', color:'white'}}>Loading...</p>
+                    </div>
+            }
         </>
     );
 }
