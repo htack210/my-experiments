@@ -12,8 +12,8 @@ function PostsList() {
                 <p>Add some!</p></div>}
             {posts.length > 0 && (
                 <ul className={classes.posts}>
-                    {posts.map((post, idx) => (
-                        <Post key={idx} name={post.author} body={post.body} />
+                    {posts.map((post) => (
+                        <Post key={post.id} id={post.id} name={post.author} body={post.body} />
                     ))}
                 </ul>
             )}
