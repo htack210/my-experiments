@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 import classes from './NewPost.module.css';
 import Modal from '../components/Modal';
@@ -7,7 +8,7 @@ const { form, actions } = classes
 const DEFAULT_BODY = 'Enter text';
 const DEFAULT_AUTHOR = 'Enter author name';
 
-function NewPost({ onCancel, onAddPost}) {
+function NewPost({ onAddPost}) {
     const [enteredBody, setEnteredBody] = useState('Enter text')
     const [enteredAuthor, setEnteredAuthor] = useState('Enter author name')
 
@@ -41,7 +42,7 @@ function NewPost({ onCancel, onAddPost}) {
             <input type="text" id="name" required onChange={authorChangeHandler} />
         </p>
         <p className={actions}>
-            <button type='button' onClick={onCancel}>Cancel</button>
+            <Link to='..' type='button'>Cancel</Link>
             <button>Submit</button>
         </p>
     </form>
