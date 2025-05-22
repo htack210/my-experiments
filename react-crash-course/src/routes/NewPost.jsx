@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import classes from './NewPost.module.css';
+import Modal from '../components/Modal';
 
 const { form, actions } = classes
 const DEFAULT_BODY = 'Enter text';
@@ -29,7 +30,9 @@ function NewPost({ onCancel, onAddPost}) {
         onAddPost(postData);
         onCancel();
     }
-    return (<form className={form} onSubmit={submitHandler}>
+    return (
+    <Modal>
+    <form className={form} onSubmit={submitHandler}>
         <p> <label htmlFor="body" >Text</label>
             <textarea id="body" required rows={3} onChange={bodyChangeHandler} />
         </p>
@@ -41,7 +44,9 @@ function NewPost({ onCancel, onAddPost}) {
             <button type='button' onClick={onCancel}>Cancel</button>
             <button>Submit</button>
         </p>
-    </form>);
+    </form>
+    </Modal>
+    )
 }
 
 export default NewPost;
