@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import Post from './Post'
 import NewPost from './NewPost'
@@ -21,7 +21,7 @@ function PostsList({ isPosting, onStopPosting }) {
             }
             setPosts(resData.posts);
             setIsFethcing(false); // After fetching data
-            }
+        }
 
         fetchPosts();
     }, []);
@@ -43,20 +43,20 @@ function PostsList({ isPosting, onStopPosting }) {
                 <Modal onClose={onStopPosting}>
                     <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
                 </Modal>)}
-            {!isFetching && posts.length === 0 && <div style={{textAlign:'center', color:'white'}}>
+            {!isFetching && posts.length === 0 && <div style={{ textAlign: 'center', color: 'white' }}>
                 <h2 className={classes.noPosts}>No posts yet!</h2>
                 <p>Add some!</p></div>}
             {!isFetching && posts.length > 0 && (
                 <ul className={classes.posts}>
-                {posts.map((post, idx) => (
-                    <Post key={idx} name={post.author} body={post.body}  />
-                ))}
-            </ul>
+                    {posts.map((post, idx) => (
+                        <Post key={idx} name={post.author} body={post.body} />
+                    ))}
+                </ul>
             )}
-            {isFetching && 
+            {isFetching &&
                 <div>
-                    <p style={{textAlign:'center', color:'white'}}>Loading...</p>
-                    </div>
+                    <p style={{ textAlign: 'center', color: 'white' }}>Loading...</p>
+                </div>
             }
         </>
     );
