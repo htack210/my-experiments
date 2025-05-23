@@ -1,9 +1,9 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import classes from './Post.module.css';
 
 const { post, author, text } = classes
 
-function Post({ name, body }) {
+function Post({ id, name, body }) {
     return (
         <li className={post}>
             <Link to={id}>
