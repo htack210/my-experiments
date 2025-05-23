@@ -6,7 +6,7 @@ export default function Home() {
       <Header />
       <p>🔥 Let&apos;s get started! 🔥</p>
       <p>
-        <Link href="/about">About Us</Link>
+        <Link href="/about">About Us</Link> | <Link href="/blog">My Blog</Link>
       </p>
     </main>
   );
